@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Web3Provider } from './Web3Context';
+import UploadDocument from './components/UploadDocuments';
+import ViewDocuments from './components/ViewDocuments';
+import ShareDocument from './components/ShareDocument';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <Web3Provider>
+            <div>
+                <h1>Decentralized DigiLocker</h1>
+                <UploadDocument />
+                <ViewDocuments />
+                <ShareDocument />
+            </div>
+        </Web3Provider>
+    );
+};
 
 export default App;
