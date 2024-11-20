@@ -1,0 +1,146 @@
+/* Container styling */
+.container {
+    background: #2c2f3b;
+    border: 1px solid #44475a;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+  }
+  .container:hover{
+    box-shadow: 0 4px 12px rgba(0, 200, 255, 0.6);
+  }
+  
+  /* Title styling */
+  .container h1 {
+    font-size: 32px;
+    color: #00b8d8;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px #00b8d8, 0 0 1px #00b8d8;
+  }
+  
+  /* File input styling */
+  .container input[type="file"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    background: #2c2f3b;
+    border: 2px solid #44475a;
+    border-radius: 8px;
+    color: #b2b2d8;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .container input[type="file"]:hover {
+    border-color: #00f5ff;
+    color: #00f5ff;
+  }
+  
+  /* Upload button styling */
+  .container button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #00b8d8;
+    color: #1d1f2b;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 184, 216, 0.3);
+  }
+  
+  .container button:hover {
+    background: #26bfda;
+    color: #1d1f2b;
+    border: 1px solid whitesmoke;
+  }
+  
+  /* Popup styling */
+  .popup {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .popup.success {
+    background: rgba(0, 255, 144, 0.1);
+    border: 1px solid #00ff90;
+    color: #00ff90;
+  }
+  
+  .popup.error {
+    background: rgba(255, 69, 58, 0.1);
+    border: 1px solid #ff453a;
+    color: #ff453a;
+  }
+  
+  .popup button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: #44475a;
+    color: #f8f8f2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .popup button:hover {
+    background: #00f5ff;
+    color: #1d1f2b;
+  }
+/* Hide the default file input */
+#file-input {
+    display: none;
+  }
+  
+  /* Style the custom label */
+  .file-label {
+    display: inline-block;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s ease-in-out, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Add hover effect */
+  .file-label:hover {
+    background: linear-gradient(45deg, #5e0ebb, #1d66e1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Add focus effect */
+  .file-label:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5);
+  }
+  
+  /* Add active effect */
+  .file-label:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Optional: Add a container for layout purposes */
+  .file-upload-container {
+    margin: 20px 0;
+  }
+  

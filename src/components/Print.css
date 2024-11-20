@@ -1,0 +1,75 @@
+/* General Styles */
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: #00c8ff;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.8em;
+    text-transform: uppercase;
+}
+
+/* Card Container (Grid Layout) */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Flexible grid layout */
+    gap: 20px;
+    margin: 20px auto;
+    padding: 0 20px;
+    width: 90%;
+}
+
+/* Individual Card Styles */
+.card {
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: #00c8ff;
+    border: 1px solid rgb(124, 124, 124);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 200, 255, 0.3); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 360px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 200, 255, 0.6); /* Brighter glow on hover */
+}
+
+h3 {
+    color: #00c8ff;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #00c8ff;
+    margin: 8px 0;
+    font-size: 1em;
+}
+
+hr {
+    border-top: 1px solid #333333;
+    margin: 15px 0;
+}
+.btn
+{   display: block;
+    max-width: fit-content;
+    margin: auto;
+    background-color: #00b8d8;
+    color:black;
+
+
+}
+.btn::hover
+{
+    background: #26bfda;
+    color: #1d1f2b;
+    border: 1px solid whitesmoke;
+}

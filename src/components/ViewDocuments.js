@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../config';
+import "./View.css"
 
 const ViewDocuments = () => {
   const [documents, setDocuments] = useState([]);
@@ -82,11 +83,21 @@ const ViewDocuments = () => {
       console.error("Error fetching shared documents:", error);
     }
   };
+  const st={
+    "backgroundColor":"rgba(0, 200, 255, 0.1)",
+    "height":"25px",
+    "width":"80px",
+    "border":"0.4px solid blue",
+    "borderRadius":"10px",
+    "padding":"5px"
+    
+  }
 
   return (
+    
     <div className="view-documents-container">
       <h1>View Uploaded Documents</h1>
-      <p>Connected Account: {account}</p>
+      <p id='account'>Connected Account: {account}</p>
       {error && <div className="error">{error}</div>}
       
       <h2>Your Documents</h2>
@@ -98,8 +109,8 @@ const ViewDocuments = () => {
               <p><strong>Upload Time:</strong> {doc.uploadTimestamp}</p>
               <p>
                 <strong>IPFS Link:</strong>{' '}
-                <a href={`https://gateway.pinata.cloud/ipfs/${doc.ipfsHash}`} target="_blank" rel="noopener noreferrer">
-                  {doc.ipfsHash}
+                <a id="account"style={st} href={`https://gateway.pinata.cloud/ipfs/${doc.ipfsHash}`} target="_blank" rel="noopener noreferrer">
+                  click to view Document
                 </a>
               </p>
             </li>
@@ -118,8 +129,8 @@ const ViewDocuments = () => {
               <p><strong>Upload Time:</strong> {doc.uploadTimestamp}</p>
               <p>
                 <strong>IPFS Link:</strong>{' '}
-                <a href={`https://gateway.pinata.cloud/ipfs/${doc.ipfsHash}`} target="_blank" rel="noopener noreferrer">
-                  {doc.ipfsHash}
+                <a style={st} href={`https://gateway.pinata.cloud/ipfs/${doc.ipfsHash}`} target="_blank" rel="noopener noreferrer">
+                  click to view Document
                 </a>
               </p>
             </li>

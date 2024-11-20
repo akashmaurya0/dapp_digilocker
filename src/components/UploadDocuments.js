@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Web3 from 'web3';
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../config';
+import "./UploadDocument.css"
 
 const UploadDocuments = () => {
   const [file, setFile] = useState(null);
@@ -70,7 +71,7 @@ const UploadDocuments = () => {
 
       const uploadedFileUrl = `https://gateway.pinata.cloud/ipfs/${response.data.IpfsHash}`;
       setFileUrl(uploadedFileUrl);
-
+      console.log("uploaded file url",uploadedFileUrl);
       const gasEstimate = await contract.methods.uploadOrReplaceDocument(response.data.IpfsHash, selectedFileName).estimateGas({ from: accounts[0] });
       await contract.methods.uploadOrReplaceDocument(response.data.IpfsHash, selectedFileName).send({ from: accounts[0], gas: gasEstimate });
 
@@ -78,10 +79,13 @@ const UploadDocuments = () => {
         type: 'success',
         message: (
           <span>
-            File uploaded and URL stored on blockchain successfully! View it <a href={uploadedFileUrl} target="_blank" rel="noopener noreferrer">here</a>.
+            File uploaded and URL stored on blockchain
+             successfully! View it
+              <a href={uploadedFileUrl} target="_blank" rel="noopener noreferrer">here</a>.
           </span>
         ),
       });
+      
     } catch (error) {
       console.error("Error uploading file or storing URL on blockchain:", error);
       setPopup({ type: 'error', message: 'Error uploading file or storing URL on blockchain!' });
@@ -93,7 +97,7 @@ const UploadDocuments = () => {
   return (
     <div>
       <div className="container">
-        <h1>IPFS File Upload</h1>
+        <h1 style={{"textAlign":"center"}}>IPFS File Upload</h1>
         <form>
           <input 
             type="file" 
