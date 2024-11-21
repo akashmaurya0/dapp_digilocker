@@ -27,7 +27,7 @@ Clone the Repository
 
 bash
 Copy code
-git clone https://github.com/your-username/digilocker.git
+git clone https://github.com/akashmaurya0/digilocker_with_more_improvement.git
 cd digilocker
 Install Dependencies
 
