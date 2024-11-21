@@ -1,4 +1,4 @@
-export const CONTRACT_ADDRESS = "0x53b8c9ce924b8664c9a7e73e877bd07e41234767";
+export const CONTRACT_ADDRESS = "0xa735499d4e93f8fd53abc0412dc6b8e36ae398e5";
 export const CONTRACT_ABI =[
 	{
 		"anonymous": false,
@@ -45,6 +45,19 @@ export const CONTRACT_ABI =[
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "docId",
+				"type": "uint256"
+			}
+		],
+		"name": "deleteDocument",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -61,6 +74,25 @@ export const CONTRACT_ABI =[
 			}
 		],
 		"name": "DocumentAccessRequested",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "docId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
+		"name": "DocumentDeleted",
 		"type": "event"
 	},
 	{

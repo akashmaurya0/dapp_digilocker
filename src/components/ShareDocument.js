@@ -102,20 +102,29 @@ const ShareDocument = () => {
     };
 
     // Function to handle document access request
-    const requestDocumentAccess = async (docId) => {
+    const requestDocumentAccess = async () => {
+        const cleanedDocId = requestDocId.trim();
+    
+        // Validate that Document ID is not empty
+        if (!cleanedDocId) {
+            alert('Document ID cannot be empty.');
+            return;
+        }
+    
         try {
             // Estimate gas for the transaction
-            const gas = await contract.methods.requestDocumentAccess(docId).estimateGas({ from: account });
+            const gas = await contract.methods.requestDocumentAccess(cleanedDocId).estimateGas({ from: account });
     
             // Send the transaction
-            await contract.methods.requestDocumentAccess(docId).send({ from: account, gas });
+            await contract.methods.requestDocumentAccess(cleanedDocId).send({ from: account, gas });
     
             console.log('Document access requested successfully');
         } catch (error) {
-            // Detailed error logging
             console.error('Failed to request document access:', error);
+            alert('An error occurred while requesting access.');
         }
     };
+    
 
     // Fetch pending requests for the current account if they are a document owner
     const fetchRequests = async () => {

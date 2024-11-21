@@ -86,6 +86,7 @@ const UploadDocuments = () => {
         ),
       });
       
+      
     } catch (error) {
       console.error("Error uploading file or storing URL on blockchain:", error);
       setPopup({ type: 'error', message: 'Error uploading file or storing URL on blockchain!' });

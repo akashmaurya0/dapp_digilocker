@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
+import axios from 'axios';
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../config';
-import "./View.css"
+import './View.css';
+
+const API_KEY = "f0c384f5eee6810aa146";
+const API_SECRET = "2d883da419c7c9dcbe463138e4d607dac97cfae88352a2c8a43447bd4731e3b8";
 
 const ViewDocuments = () => {
   const [documents, setDocuments] = useState([]);
@@ -25,7 +29,6 @@ const ViewDocuments = () => {
           const contractInstance = new web3Instance.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
           setContract(contractInstance);
 
-          // Fetch user's own documents and shared documents
           fetchUserDocuments(contractInstance, accounts[0]);
           fetchSharedDocuments(contractInstance, accounts[0]);
         } catch (err) {
@@ -46,6 +49,7 @@ const ViewDocuments = () => {
         try {
           const doc = await contract.methods.getDocument(docId).call({ from: account });
           return {
+            docId,
             fileName: doc[0],
             ipfsHash: doc[1],
             uploadTimestamp: new Date(Number(doc[2]) * 1000).toLocaleString(),
@@ -55,7 +59,7 @@ const ViewDocuments = () => {
           return null;
         }
       }));
-      setDocuments(documentsData.filter(doc => doc !== null)); // Filter out any null results
+      setDocuments(documentsData.filter(doc => doc !== null));
     } catch (error) {
       console.error("Error fetching documents:", error);
       setError("Error fetching documents from the blockchain.");
@@ -69,6 +73,7 @@ const ViewDocuments = () => {
         try {
           const doc = await contract.methods.getDocument(docId).call({ from: account });
           return {
+            docId,
             fileName: doc[0],
             ipfsHash: doc[1],
             uploadTimestamp: new Date(Number(doc[2]) * 1000).toLocaleString(),
@@ -78,28 +83,50 @@ const ViewDocuments = () => {
           return null;
         }
       }));
-      setSharedDocuments(sharedData.filter(doc => doc !== null)); // Filter out any null results
+      setSharedDocuments(sharedData.filter(doc => doc !== null));
     } catch (error) {
       console.error("Error fetching shared documents:", error);
     }
   };
-  const st={
-    "backgroundColor":"rgba(0, 200, 255, 0.1)",
-    "height":"25px",
-    "width":"80px",
-    "border":"0.4px solid blue",
-    "borderRadius":"10px",
-    "padding":"5px"
-    
-  }
+
+  const handleDelete = async (docId, ipfsHash) => {
+    try {
+      // Delete from blockchain
+      await contract.methods.deleteDocument(docId).send({ from: account });
+      console.log(`Document ${docId} deleted from blockchain.`);
+
+      // Delete from Pinata
+      await axios.delete(`https://api.pinata.cloud/pinning/unpin/${ipfsHash}`, {
+        headers: {
+          pinata_api_key: API_KEY,
+          pinata_secret_api_key: API_SECRET,
+        },
+      });
+      console.log(`Document ${ipfsHash} unpinned from Pinata.`);
+
+      // Refresh document list
+      fetchUserDocuments(contract, account);
+    } catch (error) {
+      console.error("Error deleting document:", error);
+      setError("Failed to delete document.");
+    }
+  };
+
+  const st = {
+    backgroundColor: "rgba(0, 200, 255, 0.1)",
+    height: "25px",
+    width: "80px",
+    border: "0.4px solid blue",
+    borderRadius: "10px",
+    padding: "5px"
+  };
 
   return (
-    
     <div className="view-documents-container">
       <h1>View Uploaded Documents</h1>
-      <p id='account'>Connected Account: {account}</p>
+      <p id="account">Connected Account: {account}</p>
       {error && <div className="error">{error}</div>}
-      
+
       <h2>Your Documents</h2>
       {documents.length > 0 ? (
         <ul className="document-list">
@@ -109,10 +136,13 @@ const ViewDocuments = () => {
               <p><strong>Upload Time:</strong> {doc.uploadTimestamp}</p>
               <p>
                 <strong>IPFS Link:</strong>{' '}
-                <a id="account"style={st} href={`https://gateway.pinata.cloud/ipfs/${doc.ipfsHash}`} target="_blank" rel="noopener noreferrer">
-                  click to view Document
+                <a id="account" style={st} href={`https://gateway.pinata.cloud/ipfs/${doc.ipfsHash}`} target="_blank" rel="noopener noreferrer">
+                  View Document
                 </a>
               </p>
+              <button style={{ color: "red" }} onClick={() => handleDelete(doc.docId, doc.ipfsHash)}>
+                Delete
+              </button>
             </li>
           ))}
         </ul>
@@ -130,7 +160,7 @@ const ViewDocuments = () => {
               <p>
                 <strong>IPFS Link:</strong>{' '}
                 <a style={st} href={`https://gateway.pinata.cloud/ipfs/${doc.ipfsHash}`} target="_blank" rel="noopener noreferrer">
-                  click to view Document
+                  View Document
                 </a>
               </p>
             </li>

@@ -79,7 +79,7 @@ tbody td {
 }
 
 tbody tr:hover {
-    background-color: #f9f9f9;
+    background-color: #64c6f4;
 }
 
 /* Action button in table */
@@ -112,3 +112,37 @@ table button:hover {
         font-size: 0.9em;
     }
 }
+/* Full-Width Sticky Popup Styles */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60%;
+    background-color: rgba(0, 0, 0, 0.1); /* Dark overlay background */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    z-index: 9999; /* Ensure it sits on top of other elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+  }
+  
+  /* Close button inside the popup */
+  .popup button {
+    background-color: #e6a742;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 20px;
+    border-radius: 4px;
+  }
+  
+  /* Hover effect for the button */
+  .popup button:hover {
+    background-color: #f66767;
+  }
+  

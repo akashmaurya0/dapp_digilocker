@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useWeb3 } from '../Web3Context';
 import "./Print.css";
 
@@ -6,8 +6,8 @@ const PrintDocument = () => {
   const { contract, account } = useWeb3();
   const [documents, setDocuments] = useState([]);
   const [isFetched, setIsFetched] = useState(false);
+  const [showPopup, setShowPopup] = useState(false); // State to control popup visibility
 
-  // Function to fetch all documents
   const fetchAllDocuments = async () => {
     if (!contract) {
       console.error("Contract is not loaded.");
@@ -24,16 +24,27 @@ const PrintDocument = () => {
       if (docDetails && docDetails[0] && docDetails[1] && docDetails[2]) {
         const { 0: ids, 1: names, 2: owners } = docDetails;
 
-        const docs = ids.map((id, index) => ({
-          id: ids[index],
-          name: names[index],
-          owner: owners[index],
-        }));
+        const docs = ids.map((id, index) => {
+          const name = names[index] || "Unknown";
+          const owner = owners[index] || "0x0000000000000000000000000000000000000000";
 
-        setDocuments(docs);
-        setIsFetched(true);
+          // Skip invalid entries
+          if (!id || owner === "0x0000000000000000000000000000000000000000") {
+            console.warn(`Skipping invalid document entry at index ${index}`);
+            return null;
+          }
+
+          return { id, name, owner };
+        }).filter(Boolean);
+
+        if (docs.length === 0) {
+          setShowPopup(true); // Show popup if no valid documents are found
+        } else {
+          setDocuments(docs);
+          setIsFetched(true);
+        }
       } else {
-        console.error("Unexpected data structure:", docDetails);
+        setShowPopup(true); // Show popup if the structure is invalid
       }
     } catch (error) {
       console.error("Failed to fetch all documents:", error);
@@ -41,7 +52,6 @@ const PrintDocument = () => {
     }
   };
 
-  // Function to handle printing
   const handlePrint = () => {
     const printWindow = window.open('', '', 'height=600,width=800');
     printWindow.document.write(`
@@ -84,11 +94,10 @@ const PrintDocument = () => {
     printWindow.print();
   };
 
-  return (<>
-    
+  return (
+    <div className="print-documents-container">
       <h2>Print All Documents</h2>
       <button className="btn" onClick={fetchAllDocuments}>Fetch All Document Details</button>
-      <div >
       {documents.length > 0 ? (
         <div className="document-list card-container">
           {documents.map((doc) => (
@@ -98,18 +107,23 @@ const PrintDocument = () => {
               <p>Owner: {doc.owner}</p>
             </div>
           ))}
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-    <button className="btn" onClick={handlePrint}>
-        Print All Documents
-    </button>
-</div>
-
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <button className="btn" onClick={handlePrint}>
+              Print All Documents
+            </button>
+          </div>
         </div>
-      ) : (
-        <p style={{"textAlign":"center"}}>No documents found.</p>
+      ) : null}
+
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <p>No documents found.</p>
+            <button className="btn" onClick={() => setShowPopup(false)}>Close</button>
+          </div>
+        </div>
       )}
     </div>
-    </>
   );
 };
 
