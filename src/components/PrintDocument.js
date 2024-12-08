@@ -107,7 +107,9 @@ const PrintDocument = () => {
               <p>Owner: {doc.owner}</p>
             </div>
           ))}
+         
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+             <br/>
             <button className="btn" onClick={handlePrint}>
               Print All Documents
             </button>

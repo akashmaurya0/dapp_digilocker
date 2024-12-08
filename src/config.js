@@ -1,4 +1,4 @@
-export const CONTRACT_ADDRESS = "0xa735499d4e93f8fd53abc0412dc6b8e36ae398e5";
+export const CONTRACT_ADDRESS = "0xefa850aa2b37f45f4609946bedb9ca32e5df9ccf";
 export const CONTRACT_ABI =[
 	{
 		"anonymous": false,
@@ -17,6 +17,25 @@ export const CONTRACT_ABI =[
 			}
 		],
 		"name": "AccessGranted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "docId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "requester",
+				"type": "address"
+			}
+		],
+		"name": "AccessRejected",
 		"type": "event"
 	},
 	{
@@ -159,6 +178,24 @@ export const CONTRACT_ABI =[
 			}
 		],
 		"name": "grantAccess",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "docId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "requester",
+				"type": "address"
+			}
+		],
+		"name": "rejectAccess",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -438,4 +475,4 @@ export const CONTRACT_ABI =[
 		"stateMutability": "view",
 		"type": "function"
 	}
-]
+];
