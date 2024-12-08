@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/dapp_digilocker/static/css/main.fe6fe3fc.css",
+    "main.js": "/dapp_digilocker/static/js/main.98a2a1e0.js",
+    "static/js/488.bb4621f9.chunk.js": "/dapp_digilocker/static/js/488.bb4621f9.chunk.js",
+    "index.html": "/dapp_digilocker/index.html",
+    "main.fe6fe3fc.css.map": "/dapp_digilocker/static/css/main.fe6fe3fc.css.map",
+    "main.98a2a1e0.js.map": "/dapp_digilocker/static/js/main.98a2a1e0.js.map",
+    "488.bb4621f9.chunk.js.map": "/dapp_digilocker/static/js/488.bb4621f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fe6fe3fc.css",
+    "static/js/main.98a2a1e0.js"
+  ]
+}
