@@ -128,10 +128,13 @@ const ViewDocuments = () => {
       {error && <div className="error">{error}</div>}
 
       <h2>Your Documents</h2>
+      {console.log(" is of docs is ",documents)}
       {documents.length > 0 ? (
+        
         <ul className="document-list">
           {documents.map((doc, index) => (
             <li key={index} className="document-item">
+              <p><strong>document id is {doc.docId.toString()}</strong></p>
               <p><strong>File Name:</strong> {doc.fileName}</p>
               <p><strong>Upload Time:</strong> {doc.uploadTimestamp}</p>
               <p>
@@ -155,11 +158,12 @@ const ViewDocuments = () => {
         <ul className="document-list">
           {sharedDocuments.map((doc, index) => (
             <li key={index} className="document-item">
+              <p>id is :{doc.docId.toString()}</p>
               <p><strong>File Name:</strong> {doc.fileName} (Shared Document)</p>
               <p><strong>Upload Time:</strong> {doc.uploadTimestamp}</p>
               <p>
                 <strong>IPFS Link:</strong>{' '}
-                <a style={st} href={`https://gateway.pinata.cloud/ipfs/${doc.ipfsHash}`} target="_blank" rel="noopener noreferrer">
+                <a id="view-link" style={st} href={`https://gateway.pinata.cloud/ipfs/${doc.ipfsHash}`} target="_blank" rel="noopener noreferrer">
                   View Document
                 </a>
               </p>

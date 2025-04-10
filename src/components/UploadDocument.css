@@ -75,7 +75,7 @@
   }
   
   .popup.success {
-    background: rgba(0, 255, 144, 0.1);
+    background: rgba(0, 255, 144, 0.7);
     border: 1px solid #00ff90;
     color: #00ff90;
   }

@@ -17,25 +17,34 @@ h2 {
 
 /* Card Container (Grid Layout) */
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Flexible grid layout */
-    gap: 20px;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
     margin: 20px auto;
     padding: 0 20px;
     width: 90%;
+    
+::-webkit-scrollbar {
+  display: none;
+}
 }
 
 /* Individual Card Styles */
 .card {
     padding: 20px;
     background-color: #1a1a1a;
-    color: #00c8ff;
+    color: #41c6cf;
     border: 1px solid rgb(124, 124, 124);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 200, 255, 0.3); /* Subtle shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    min-width: 360px;
+    max-width: 300px;
+    overflow: scroll;
+    margin:10px;
+
 }
+
+
 
 .card:hover {
     transform: translateY(-5px);
@@ -73,3 +82,53 @@ hr {
     color: #1d1f2b;
     border: 1px solid whitesmoke;
 }
+/* Loading Spinner */
+.loading-spinner {
+    margin: 20px auto;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid #00c8ff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Spinner Animation */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  /* Pagination Controls */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    background-color: #0083e0;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+  
+  .pagination button:hover:not(:disabled) {
+    background-color: #43caff;
+  }
+  
+  /* Center Align Page Number */
+  .pagination span {
+    font-size: 1.2rem;
+    color: white;
+  }
+  

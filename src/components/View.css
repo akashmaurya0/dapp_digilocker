@@ -1,168 +1,136 @@
-/* Container styling */
-.view-documents-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px;
-    background: #1d1f2b;
-    border-radius: 12px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
-    color: #e1e1e6;
-    font-family: Arial, sans-serif;
-    text-align: left;
-  }
-  
-  /* Title styling */
-  .view-documents-container h1 {
-    font-size: 32px;
-    color: #00b8d8;
-    text-align: center;
-    margin-bottom: 20px;
-    text-shadow: 0 0 5px #00b8d8, 0 0 1px #00b8d8;
-  }
-  
-  /* Subheader styling */
-  .view-documents-container h2 {
-    font-size: 26px;
-    color: #f0a500;
-    margin-top: 30px;
-    border-bottom: 2px solid #f0a500;
-    padding-bottom: 5px;
-  }
-  
-  /* Error message styling */
-  .error {
-    background: rgba(255, 69, 58, 0.1);
-    border: 1px solid #ff453a;
-    color: #ff453a;
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  /* Document list styling */
-  .document-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .document-item {
-    background: #2c2f3b;
-    border: 1px solid #44475a;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 15px;
-    transition: transform 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0, 200, 255, 0.1);
-  }
-  
-  .document-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 200, 255, 0.3);
-  }
-  
-  /* Text styling */
-  .document-item p {
-    margin: 8px 0;
-    color: #cfcfcf;
-  }
-  
-  .document-item p strong {
-    color: #00b8d8;
-  }
-  
-  /* Link styling */
-  .document-item a {
-    color: #00f5ff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-  }
-  
-  .document-item a:hover {
-    color: #02ff91;
-  }
-  
-  /* Account info styling */
-  .view-documents-container p {
-    color: #b2b2d8;
-    font-size: 16px;
-    text-align: center;
-  }
-  
-  /* No documents or shared documents styling */
-  .view-documents-container p {
-    font-size: 18px;
-    text-align: center;
-    color: #757575;
-  }
-  /* Apply to the entire page or a specific container */
-body, .custom-scrollbar-container {
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: linear-gradient(90deg, #7eb4ff, #68a9e6) #e5e5e5; /* Thumb color and track color */
-  }
-  
-  /* For WebKit-based browsers (Chrome, Edge, Safari) */
-  /* Scrollbar container */
-  ::-webkit-scrollbar {
-    width: 16px; /* Adjust width for vertical scrollbar */
-    height: 16px; /* Adjust height for horizontal scrollbar */
-  }
-  
-  /* Scrollbar track (background) */
-  ::-webkit-scrollbar-track {
-    background: linear-gradient(180deg, #f1f1f1, #e5e5e5); /* Gradient background */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  }
-  
-  /* Scrollbar thumb (scroll handle) */
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #5f8ac6, #94bbeb); /* Gradient color for thumb */
-    border-radius: 10px; /* Rounded corners */
-    border: 3px solid #f1f1f1; /* Contrast border */
-    transition: background 0.3s ease-in-out; /* Smooth transition */
-  }
-  
-  /* Scrollbar thumb on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, #3b64bd, #15764a); /* Brighter gradient when hovered */
-    border: 2px solid #e5e5e5; /* Slight border change */
-  }
-  
-  /* Scrollbar corner (intersection of vertical and horizontal scrollbars) */
-  ::-webkit-scrollbar-corner {
-    background: #f1f1f1; /* Matches the track background */
-  }
-  
-  /* Add smooth scrolling behavior */
-  html {
-    scroll-behavior: smooth; /* Smooth scrolling effect */
-  }
-  
-  /* Add animation for scrolling areas */
-  .custom-scrollbar-container {
-    position: relative;
-    overflow-y: auto; /* Ensure scrollbar appears */
-    max-height: 400px; /* Set container height */
-    background: #fdfdfd; /* Light background */
-    padding: 16px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-  }
-  
-  .custom-scrollbar-container:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Elevation effect on hover */
-  }
-  /* Default styling for the paragraph */
-#account {
-    font-size: 16px; /* Default font size for larger screens */
+/* Loading Spinner */
+.loading-spinner {
+  margin: 20px auto;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top: 5px solid #00c8ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-/* Media query for mobile view */
-@media (max-width: 768px) {
-    #account {
-        font-size: 12px; /* Smaller font size for mobile devices */
-    }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Document Grid */
+.document-list {
+ display:flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ align-items: center;
+}
+
+/* Document Card */
+.document-item {
+   margin: 10px;;
+  background: #2c2f3b;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 200, 255, 0.5);
+  text-align: left;
+  color: #e1e1e6;
+  transition: transform 0.2s ease;
+  min-width:300px;
+}
+
+.document-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 5px;
+  position: relative;
+  bottom: 0px;
+}
+
+/* Preview & Download Buttons */
+.btn-preview, .btn-download ,.btn-delete{
+  background-color: #0083e0;
+  color: white;
+  border: none;
+  margin: 5px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-preview:hover, .btn-download:hover {
+  background-color: #3496b4;
+}
+
+/* Full-Screen Preview Overlay */
+.preview-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(54, 54, 54, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+/* Full-Screen Preview */
+.preview-fullscreen {
+  width: 90%;
+  height: 90%;
+  border: none;
+}
+
+/* Close Button */
+.btn-close {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  width:100px;
+  
+}
+
+.btn-close:hover {
+  background: darkred;
+}
+h1,p{
+  text-align: center;
+}
+#account
+{
+  color: #ffffff;
+  margin: 0px 5px;
+}.document-item p {
+  margin: 5px 0;
+}
+
+.document-id {
+  font-size: 14px;
+  color: #007bff;
+  font-weight: bold;
+}
+a
+{
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+}
+ul li{
+  margin: 10px;
+  list-style: none;
+}
+ul{
+  list-style: none;
 }

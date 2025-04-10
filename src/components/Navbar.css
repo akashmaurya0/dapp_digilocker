@@ -1,0 +1,111 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Sidebar Navigation */
+  .sidebar {
+    position: fixed;
+    left: -250px; /* Initially hidden */
+    top:83px;
+    width: 250px;
+    height: 100vh;
+    background-color: #1a1a1a;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease-in-out;
+    overflow: hidden;
+    z-index: 1000000;
+  }
+  
+  /* Sidebar Open State */
+  .sidebar.open {
+    left: 0; /* Visible when open */
+  }
+  
+  /* Sidebar Title */
+  .sidebar h1 {
+    font-size: 1.8rem;
+    color: #00c8ff;
+    margin-bottom: 30px;
+  }
+  
+  /* Sidebar Links */
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .sidebar ul li {
+    width: 100%;
+    text-align:left;
+    padding: 5px 0;
+  }
+  
+  .sidebar ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s;
+    padding: 10px 5px;
+    width: 100%;
+  }
+  
+  .sidebar ul li a:hover {
+    background: #5f6061;
+    color: rgb(255, 255, 255);
+  }
+  
+  /* Hamburger Button */
+  .hamburger {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    width:100px;
+  }
+  
+  .hamburger:hover {
+    color: #6ebce9;
+    background-color: #1a1a1a;
+  }
+  
+  /* Adjust Main Content */
+  .main-content {
+    margin-left: 0; /* Sidebar is hidden initially */
+    transition: margin-left 0.3s ease-in-out;
+  }
+  
+  /* Move Content when Sidebar Opens */
+  .sidebar.open ~ .main-content {
+    margin-left: 250px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 200px;
+    }
+  
+    .sidebar.open ~ .main-content {
+      margin-left: 200px;
+    }
+  
+    .hamburger {
+      left: 15px;
+    }
+  }
+  
